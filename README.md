@@ -2,6 +2,18 @@
 
 A RESTful API for managing auction items with PostgreSQL, Prisma ORM, Redis caching, and Kubernetes deployment.
 
+# Why I Chose This Stack
+
+I built the API with Node.js, Express, and TypeScript because it’s fast, flexible, and easy to work with. Using TypeScript helps catch errors early and keeps the code clean and maintainable.
+
+For the database, I picked PostgreSQL because it supports full-text search out of the box, which makes searching through auction items quick and accurate. in the future, PostgreSQL will help me keep all bidding transactions safe and consistent by using its built-in support for ACID properties — meaning each bid is processed completely and correctly, without any data loss or corruption, even if multiple users bid at the same time.
+
+To speed things up, I use Redis as a cache. It stores frequently requested data like lists of items and search results in memory, so the API can respond faster without hitting the database every time.
+
+I chose Prisma as the ORM because it makes working with the database much easier and safer. It provides type safety with TypeScript, so I catch mistakes early, and its clear API helps me write and maintain database queries quickly without worrying about SQL syntax errors. Plus, Prisma handles migrations smoothly, which helps keep the database schema in sync with the code.
+
+# How to test
+
 To Quickly test the api, please run this in a unix system or wsl.
 This will run a bash script that will Curl all the possible api requests
 
