@@ -1,0 +1,48 @@
+# redis.yml
+
+# ----------------------------
+# Redis Deployment (stateless)
+# ----------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1  # One replica is enough for basic caching use case
+  selector:
+    matchLabels:
+      app: redis  # Must match template.metadata.labels
+  template:
+    metadata:
+      labels:
+        app: redis  # Labels used by the service selector
+    spec:
+      containers:
+        - name: redis
+          image: redis:8
+          ports:
+            - containerPort: 6379  # Redis listening port
+          resources:
+            requests:
+              memory: "64Mi"  # Minimum memory request to avoid overcommit
+              cpu: "50m"      # Light CPU usage expected for caching
+
+---
+# ----------------------------
+# Redis Service (Internal DNS)
+# ----------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+spec:
+  selector:
+    app: redis  # Matches the label defined in the Deployment
+  ports:
+    - protocol: TCP
+      port: 6379         # Port exposed internally to other services
+      targetPort: 6379   # Maps to containerPort on Redis pod
+
+# This service exposes Redis as:
+#   redis://redis-service:6379
+# Inside the Kubernetes cluster (used by other pods like our API)

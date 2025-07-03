@@ -1,0 +1,27 @@
+# deployment.yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auction-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: auction-api
+  template:
+    metadata:
+      labels:
+        app: auction-api
+    spec:
+      containers:
+      - name: app
+        image: nightoneee/auction-api:latest
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: auction-config
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
