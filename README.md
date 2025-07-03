@@ -2,7 +2,7 @@
 
 A RESTful API for managing auction items with PostgreSQL, Prisma ORM, Redis caching, and Kubernetes deployment.
 
-# Why I Chose This Stack
+## Why I Chose This Stack
 
 I built the API with Node.js, Express, and TypeScript because it’s fast, flexible, and easy to work with. Using TypeScript helps catch errors early and keeps the code clean and maintainable.
 
@@ -26,7 +26,7 @@ you can also turn it off and delete all data using
 
 ---
 
-# How to test
+## How to test
 
 To Quickly test the api, please run this in a unix system or wsl.
 This will run a bash script that will Curl all the possible api requests
