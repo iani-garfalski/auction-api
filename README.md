@@ -12,16 +12,6 @@ To speed things up, I use Redis as a cache. It stores frequently requested data 
 
 I chose Prisma as the ORM because it makes working with the database much easier and safer. It provides type safety with TypeScript, so I catch mistakes early, and its clear API helps me write and maintain database queries quickly without worrying about SQL syntax errors. Plus, Prisma handles migrations smoothly, which helps keep the database schema in sync with the code.
 
-# How to test
-
-To Quickly test the api, please run this in a unix system or wsl.
-This will run a bash script that will Curl all the possible api requests
-
-```
-chmod +x test-auction-api.sh
-./test-auction-api.sh
-```
-
 ---
 
 ## Project Initialization
@@ -33,6 +23,18 @@ Initialize the project with docker compose:
 you can also turn it off and delete all data using 
 
 `docker compose down -v`
+
+---
+
+# How to test
+
+To Quickly test the api, please run this in a unix system or wsl.
+This will run a bash script that will Curl all the possible api requests
+
+```
+chmod +x test-auction-api.sh
+./test-auction-api.sh
+```
 
 ---
 
