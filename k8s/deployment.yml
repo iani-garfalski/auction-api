@@ -14,14 +14,20 @@ spec:
         app: auction-api
     spec:
       containers:
-      - name: app
-        image: nightoneee/auction-api:latest
-        ports:
-        - containerPort: 3000
-        envFrom:
-        - configMapRef:
-            name: auction-config
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "100m"
+        - name: app
+          image: nightoneee/auction-api:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: auction-config
+          env:
+            - name: NODE_ENV
+              value: "production"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+          command: ["/bin/sh"]
+          args: ["-c", "npx prisma migrate deploy && npm run dev"]
+

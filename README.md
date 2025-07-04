@@ -59,7 +59,7 @@ npm install express dotenv zod cors csv-parse @prisma/client ioredis
 - The initial docker build autimatically handles the schema migrate and postgres full text search indexing
 
 - Import CSV data and build full-text search index:
-    `docker-compose exec auction-api-api-1 npm run import`
+    `docker compose exec api npm run import`
 
 
 - Verify full-text index exists in PostgreSQL:
@@ -87,6 +87,9 @@ WHERE tablename = 'AuctionItem' AND indexname = 'auction_item_fulltext_idx';
 
 ## Kubernetes Deployment
 
+# Build and Run Locally
+docker build -t nightoneee/auction-api:latest .
+
 1. Start Minikube (for local testing):
 
 minikube start
@@ -95,9 +98,36 @@ minikube start
 
 kubectl apply -f ./k8s/
 
-3. Access the API service in the browser (Minikube):
+3. Access the API service in the browser (Minikube) and port forward to 3000:
 
-minikube service auction-api-service
+    ```
+    minikube service auction-api-service
+    kubectl port-forward deployment/auction-api 3000:3000
+    ```
+
+4. view pods and svc:
+    `kubectl get pods`
+    `kubectl get svc`
+
+5. Check number of replicas, delete and test pod destruction and healing:
+    ```
+    kubectl get deployment auction-api
+    kubectl delete pod -l app=auction-api --force --grace-period=0
+    kubectl get pods -l app=auction-api
+    ```
+
+6. Check if postgres and redis pods work
+    ```
+    kubectl get pods -l app=redis
+    kubectl get pods -l app=postgres
+    ```
+
+7. Run the import script
+
+```
+fetch a replica using: get pods -l app=auction-api
+kubectl exec -it auction-api-76587ff5c5-59swn -- npm run import
+```
 
 ---
 

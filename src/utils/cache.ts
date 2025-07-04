@@ -19,7 +19,10 @@
 
 import Redis from 'ioredis';
 
-export const redis = new Redis({ host: 'redis', port: 6379 });
+export const redis = process.env.REDIS_URL
+  ? new Redis(process.env.REDIS_URL)
+  : new Redis({ host: 'redis-service', port: 6379 });
+
 
 // Try to get from cache
 export async function cacheGet<T>(key: string): Promise<T | null> {

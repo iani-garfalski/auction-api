@@ -4,5 +4,6 @@ kind: ConfigMap
 metadata:
   name: auction-config
 data:
-  DATABASE_URL: "postgresql://postgres:password@postgres-service:5432/auctiondb"
+  DATABASE_URL: "postgresql://postgres:password@postgres-service:5432/auctiondb?schema=public"
   REDIS_URL: "redis://redis-service:6379"
+  API_KEY: "dfBbhJTdWTApmBUAs2s8zTcIMnLRl2qT"

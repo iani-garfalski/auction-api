@@ -6,8 +6,9 @@ metadata:
 spec:
   selector:
     app: auction-api
+  type: NodePort
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 3000  # Matches containerPort in deployment
-  type: LoadBalancer
+      targetPort: 3000
+      nodePort: 30080
