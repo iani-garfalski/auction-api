@@ -2,7 +2,7 @@
 
 A RESTful API for managing auction items with PostgreSQL, Prisma ORM, Redis caching, and Kubernetes deployment.
 
-# Why I Chose This Stack
+## Why I Chose This Stack
 
 I built the API with Node.js, Express, and TypeScript because it’s fast, flexible, and easy to work with. Using TypeScript helps catch errors early and keeps the code clean and maintainable.
 
@@ -11,16 +11,6 @@ For the database, I picked PostgreSQL because it supports full-text search out o
 To speed things up, I use Redis as a cache. It stores frequently requested data like lists of items and search results in memory, so the API can respond faster without hitting the database every time.
 
 I chose Prisma as the ORM because it makes working with the database much easier and safer. It provides type safety with TypeScript, so I catch mistakes early, and its clear API helps me write and maintain database queries quickly without worrying about SQL syntax errors. Plus, Prisma handles migrations smoothly, which helps keep the database schema in sync with the code.
-
-# How to test
-
-To Quickly test the api, please run this in a unix system or wsl.
-This will run a bash script that will Curl all the possible api requests
-
-```
-chmod +x test-auction-api.sh
-./test-auction-api.sh
-```
 
 ---
 
@@ -33,6 +23,18 @@ Initialize the project with docker compose:
 you can also turn it off and delete all data using 
 
 `docker compose down -v`
+
+---
+
+## How to test
+
+To Quickly test the api, please run this in a unix system or wsl.
+This will run a bash script that will Curl all the possible api requests
+
+```
+chmod +x test-auction-api.sh
+./test-auction-api.sh
+```
 
 ---
 
