@@ -129,6 +129,12 @@ kubectl apply -f ./k8s/
 ```
 fetch a replica using: get pods -l app=auction-api
 kubectl exec -it auction-api-76587ff5c5-59swn -- npm run import
+
+delete pg data if it already exists
+kubectl exec -it postgres-0 -- psql -U postgres -d auctiondb
+
+DELETE FROM "AuctionItem";
+SELECT COUNT(*) FROM "AuctionItem";
 ```
 
 ---
